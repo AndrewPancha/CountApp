@@ -1,5 +1,6 @@
 package com.example.countapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private int mCount = 0;
     private TextView mShowCounter;
     private Button buttonZero;
+    public static final String COUNTER = "counterValue";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mShowCounter = findViewById(R.id.counter);
         buttonZero = findViewById(R.id.button_zero);
-    }
-
-    public void showToast(View view) {
-        Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show();
     }
 
     public void countUp(View view) {
@@ -40,5 +38,11 @@ public class MainActivity extends AppCompatActivity {
             mShowCounter.setText(mCount);
             buttonZero.setBackgroundColor(Color.GRAY);
         }
+    }
+
+    public void sayHello(View view) {
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra(COUNTER, mCount);
+        startActivity(intent);
     }
 }
